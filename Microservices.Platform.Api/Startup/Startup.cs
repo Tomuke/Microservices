@@ -75,8 +75,10 @@ namespace Microservices.Platform.Api
          *  
          *  kubectl get deployments
          *  kubectl get pods
-         *  kubectl get services
          *  kubectl apply -f platforms-deployment.yaml
+         *  kubectl delete deployment platforms-deployment
+         *  
+         *  kubectl get services
          *  kubectl apply -f platforms-node-port-service.yaml
          */
     }

@@ -14,5 +14,5 @@ spec:
     spec:
       containers:
         - name: platform-service
-          image: tommarshall39/platform-service:latest
+          image: microservicesplatformapi:dev
           command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
