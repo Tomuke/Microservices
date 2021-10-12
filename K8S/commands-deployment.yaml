@@ -1,36 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platforms-deployment
+  name: commands-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: platform-service
+      app: command-service
   template:
     metadata:
       labels:
-        app: platform-service
+        app: command-service
     spec:
       containers:
-        - name: platform-service
-          image: microservicesplatformapi:dev
+        - name: command-service
+          image: microservicescommandsapi:dev
           command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: platforms-clusterip-service
+  name: commands-clusterip-service
 spec:
   type: ClusterIP
   selector:
-    app: platform-service
+    app: command-service
   ports:
-  - name: platform-service
+  - name: command-service
     protocol: TCP
     port: 80
-    targetPort: 80
-  - name: plafromgrpc
-    protocol: TCP
-    port: 666
-    targetPort: 666
+    targetPort: 80 

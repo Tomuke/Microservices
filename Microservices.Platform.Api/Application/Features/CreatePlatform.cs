@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microservices.Platform.Api.Application.Abstractions;
 using Microservices.Platform.Api.Application.Contracts;
 using Microservices.Platform.Api.Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -51,11 +52,13 @@ namespace Microservices.Platform.Api.Application.Features
         {
             private readonly IPlatformRepository _repository;
             private readonly IMapper _mapper;
+            private readonly ICommandDataClient _commandDataClient;
 
-            public Handler(IPlatformRepository repository, IMapper mapper)
+            public Handler(IPlatformRepository repository, IMapper mapper, ICommandDataClient commandDataClient)
             {
                 this._repository = repository;
                 this._mapper = mapper;
+                this._commandDataClient = commandDataClient;
             }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
@@ -71,10 +74,14 @@ namespace Microservices.Platform.Api.Application.Features
 
                 await _repository.SaveChangesAsync(cancellationToken);
 
-                return new Response()
+                var response = new Response()
                 {
                     Platform = _mapper.Map<PlatformReadDto>(platform)
                 };
+
+                await _commandDataClient.SendPlatformToCommand(response.Platform);
+
+                return response;
             }
         }
 

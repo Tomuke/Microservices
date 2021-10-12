@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Platform.Api"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{254E05BF-2D7F-49FE-8D53-B95E59B20F79}"
 	ProjectSection(SolutionItems) = preProject
+		K8S\commands-deployment.yaml = K8S\commands-deployment.yaml
+		K8S\ingress-service.yaml = K8S\ingress-service.yaml
 		K8S\platforms-deployment.yaml = K8S\platforms-deployment.yaml
 		K8S\platforms-node-port-service.yaml = K8S\platforms-node-port-service.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.Commands.Api", "Microservices.Commands.Api\Microservices.Commands.Api.csproj", "{34858D9B-8F68-4149-AEA0-7278EE375278}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Commands.Api", "Microservices.Commands.Api\Microservices.Commands.Api.csproj", "{34858D9B-8F68-4149-AEA0-7278EE375278}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
